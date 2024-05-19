@@ -5,12 +5,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbspCảm xúc được nhân diện qua ngữ âm và ngữ nghĩa. trong đề tài này, chỉ dùng ngữ âm để nhận diện.&nbsp;
 
 ### Phạm vi nghiên cứu bao gồm các nội dung chính sau:
-•	Thu thập và xây dựng bộ dữ liệu giọng nói cảm xúc
-•	Tiền xử lý dữ liệu giọng nói
-•	Trích xuất các đặc trưng liên quan đến giọng nói
-•	Phát triển mô hình AI cho nhận diện cảm xúc
-•	Đánh giá hiệu suất của mô hình
-•	Triển khai và ứng dụng trong thực tế
+-	Thu thập và xây dựng bộ dữ liệu giọng nói cảm xúc
+-	Tiền xử lý dữ liệu giọng nói
+-	Trích xuất các đặc trưng liên quan đến giọng nói
+-	Phát triển mô hình AI cho nhận diện cảm xúc
+-	Đánh giá hiệu suất của mô hình
+-	Triển khai và ứng dụng trong thực tế
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 ## Tập dữ liệu
