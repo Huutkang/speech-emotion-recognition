@@ -52,7 +52,7 @@ nếu trong quá trình cài đặt các thư viện phụ thuộc mà bị lỗ
 
 ### Bước 4:
 Sau khi cài đặt xong thư viện, tiếp tục tải data từ đường dẫn đã ghi trên phần "tập dữ liệu".
-thực hiện giải nén và đưa vào thư mục data trong thu mục intro_AI. đã có sẵn một ảnh chụp cấu trúc thư mục data.
+thực hiện giải nén và đưa vào thư mục data trong thu mục speech-emotion-labeling. đã có sẵn một ảnh chụp cấu trúc thư mục data.
 
 ### Bước 5:
 Sau khi hoàn thành các bước trên bạn vào file main. setup các thông số cần thiết. và chạy
