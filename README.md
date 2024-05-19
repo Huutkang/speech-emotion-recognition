@@ -2,7 +2,7 @@
 
 ## **Tổng quan**
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Khả năng nhận diện cảm xúc của con người là một kỹ năng quan trọng trong giao tiếp và tương tác. Nghiên cứu này tập trung vào việc phát triển một hệ thống AI có khả năng nhận diện các cảm xúc cơ bản như vui, buồn, giận dữ, sợ hãi thông qua phân tích giọng nói. Bằng cách kết hợp các kỹ thuật AI như học máy, mạng nơ-ron..., mục tiêu là xây dựng được mô hình nhận diện cảm xúc chính xác và hiệu quả</br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbspCảm xúc được nhân diện qua ngữ âm và ngữ nghĩa. trong đề tài này, chỉ dùng ngữ âm để nhận diện.&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Cảm xúc được nhân diện qua ngữ âm và ngữ nghĩa. trong đề tài này, chỉ dùng ngữ âm để nhận diện.&nbsp;
 
 ### Phạm vi nghiên cứu bao gồm các nội dung chính sau:
 -	Thu thập và xây dựng bộ dữ liệu giọng nói cảm xúc
