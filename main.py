@@ -49,7 +49,7 @@ if 'speech emotion recognition' not in cwd:
 
 # =================================================================
 
-# c = Realtime(path_cnn='storage/CNN/2 cnn.nht', path_lstm='storage/LSTM/2 lstm.nht')
+# c = Realtime(path_cnn='storage/CNN/1 cnn.nht', path_lstm='storage/LSTM/1 lstm.nht')
 # c.start()
 
 # c = Realtime()
