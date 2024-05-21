@@ -14,7 +14,7 @@ if 'speech emotion recognition' not in cwd:
 # =================================================================
 
 # audio_features = ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel']
-# a = cnn('TESS', '1d', audio_features)
+# a = cnn('TESS', '2d', audio_features)
 # a.run(50)
 # save_obj(a)
 
@@ -49,11 +49,11 @@ if 'speech emotion recognition' not in cwd:
 
 # =================================================================
 
-# c = Realtime(path_cnn='storage/CNN/1 cnn.nht', path_lstm='storage/LSTM/1 lstm.nht')
+# c = Realtime(path_cnn='storage/CNN/2 cnn.nht', path_lstm='storage/LSTM/2 lstm.nht')
 # c.start()
 
-c = Realtime()
-c.start()
+# c = Realtime()
+# c.start()
 
 
 

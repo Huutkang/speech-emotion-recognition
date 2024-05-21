@@ -2,8 +2,7 @@ import os
 import pandas as pd
 import seaborn as sns
 from keras.models import Sequential
-from keras.layers import Dense, LSTM, Dropout
-from keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout
+from keras.layers import Dense, LSTM, Dropout, Conv1D, Conv2D, MaxPooling1D, MaxPool2D, Flatten, BatchNormalization
 from keras.callbacks import ReduceLROnPlateau
 from keras import regularizers
 from sklearn.model_selection import train_test_split
@@ -169,8 +168,24 @@ class cnn(Model):
             self.model = model
             
         elif self.num_dimensions == '2d':
-            # ...
-            pass
+            model=Sequential()
+            model.add(Conv2D(64, kernel_size=3, padding = 'same', activation = 'relu', input_shape = input_shape))
+            model.add(MaxPool2D(pool_size = 4, strides = 4))
+            model.add(BatchNormalization())
+
+            model.add(Conv2D(64, kernel_size=2, padding = 'same', activation = 'relu'))
+            model.add(MaxPool2D(pool_size = 4, strides = 4))
+            model.add(BatchNormalization())
+
+            model.add(Dropout(0.3))
+
+            model.add(Flatten())
+            model.add(Dense(units = 64, activation = 'relu', kernel_regularizer = regularizers.l2(0.01)))
+            model.add(Dropout(0.3))
+            model.add(Dense(units = 7, activation = 'softmax', kernel_regularizer = regularizers.l2(0.01)))
+            model.compile(optimizer = 'adam' , loss = 'categorical_crossentropy' , metrics = ['accuracy'])
+
+            self.model = model
         else:
             raise ValueError('num_dimensions chỉ nhận 2 giá trị là 1d hoặc 2d')
     

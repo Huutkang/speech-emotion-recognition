@@ -46,6 +46,7 @@ def cal_input_shape(cf, audio_features, n_sample, n_chroma, n_mfcc, TB = False):
     elif cf == '2d':
         cf = 'time'
         TB = False
+        td = True
     zcr, chroma_stft, mfcc, rms, mel = 0, 0, 0, 0, 0
     if 'zcr' in audio_features:
         zcr = 1
@@ -75,7 +76,10 @@ def cal_input_shape(cf, audio_features, n_sample, n_chroma, n_mfcc, TB = False):
                 print('Lưu ý: học theo trục thời gian mà để giá trị trung bình thì tôi thấy cũng cũng chẳng có ý nghĩa gì') 
             else:
                 row = zcr + n_chroma*chroma_stft + n_mfcc*mfcc + rms + 128*mel
-            return (column, row)
+            if td:
+                return (column, row, 1)
+            else:
+                return (column, row)
         elif type(TB) == tuple or type(TB) == list:
             if len(TB) != 3:
                 raise ValueError("TB chỉ nhận tuple hoặc list có 3 giá trị. vd: [True, False, True]")

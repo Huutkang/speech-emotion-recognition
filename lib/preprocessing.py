@@ -11,8 +11,8 @@ def handle_path(pl,  predict):
     dr = []
     for path in pl:
         cwd = os.getcwd()
-        if 'intro_AI' not in cwd:
-            print('Có lẽ bạn đang mở sai thư mục. Bạn hãy mở lại thư mục intro_AI cho đúng')
+        if 'speech emotion recognition' not in cwd:
+            print('Có lẽ bạn đang mở sai thư mục. Bạn hãy mở lại thư mục speech emotion recognition cho đúng')
         path_data = os.path.join(cwd, 'data')
         if not os.path.isdir(path_data):
             raise NotADirectoryError('Thư mục data không tồn tại')
@@ -192,7 +192,8 @@ def one_d(audio_features, ds):
     return X
 
 def two_d(audio_features, X):
-    return l_time(audio_features, X, False)
+    lt = l_time(audio_features, X, False)
+    return np.expand_dims(lt, axis=3) 
 
 def l_freq(audio_features, ds, TB):
     X = []
