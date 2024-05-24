@@ -147,48 +147,32 @@ class cnn(Model):
             model=Sequential()
             model.add(Conv1D(256, kernel_size=5, strides=1, padding='same', activation='relu', input_shape=input_shape))
             model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
-
             model.add(Conv1D(256, kernel_size=5, strides=1, padding='same', activation='relu'))
             model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
-
             model.add(Conv1D(128, kernel_size=5, strides=1, padding='same', activation='relu'))
             model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
             model.add(Dropout(0.2))
-
             model.add(Conv1D(64, kernel_size=5, strides=1, padding='same', activation='relu'))
             model.add(MaxPooling1D(pool_size=5, strides = 2, padding = 'same'))
-
             model.add(Flatten())
             model.add(Dense(units=32, activation='relu', kernel_regularizer = regularizers.l1(0.01)))
             model.add(Dropout(0.3))
-
             model.add(Dense(units=7, activation='softmax', kernel_regularizer=regularizers.l1(0.01)))
             model.compile(optimizer = 'adam' , loss = 'categorical_crossentropy' , metrics = ['accuracy'])
-
             self.model = model
-
         elif self.num_dimensions == '2d':
             model = Sequential()
-    
             model.add(Conv2D(64, (3, 3), activation='relu', padding='same', input_shape=input_shape))
             model.add(MaxPooling2D((2, 2), strides=(2, 2)))
-            
             model.add(Conv2D(128, (3, 3), activation='relu', padding='same'))
             model.add(MaxPooling2D((2, 2), strides=(2, 2)))
-            
             model.add(Conv2D(256, (3, 3), activation='relu', padding='same'))
             model.add(MaxPooling2D((2, 2), strides=(2, 2)))
-            
             model.add(Conv2D(512, (3, 3), activation='relu', padding='same'))
             model.add(MaxPooling2D((2, 2), strides=(2, 2)))
-            
             model.add(Conv2D(512, (3, 3), activation='relu', padding='same'))
             model.add(MaxPooling2D((2, 2), strides=(2, 2)))
-            
-            # Fully connected layers
             model.add(Flatten())
-            model.add(Dense(512, activation='relu'))
-            model.add(Dropout(0.1))
             model.add(Dense(512, activation='relu'))
             model.add(Dropout(0.1))
             model.add(Dense(256, activation='relu'))
@@ -198,9 +182,7 @@ class cnn(Model):
             model.add(Dense(64, activation='relu'))
             model.add(Dropout(0.1))
             model.add(Dense(7, activation='softmax'))
-            
             model.compile(optimizer = 'adam' , loss = 'categorical_crossentropy' , metrics = ['accuracy'])
-
             self.model = model
         else:
             raise ValueError('num_dimensions chỉ nhận 2 giá trị là 1d hoặc 2d')
@@ -287,8 +269,6 @@ class lstm(Model):
         model = Sequential([
             LSTM(512, return_sequences=False, input_shape=input_shape),
             Dropout(0.1),
-            Dense(512, activation='relu'),
-            Dropout(0.1),
             Dense(256, activation='relu'),
             Dropout(0.1),
             Dense(256, activation='relu'),
@@ -301,20 +281,6 @@ class lstm(Model):
         ])
         model.compile(loss=self.loss, optimizer='adam', metrics=['accuracy'])
         self.model = model
-    
-    # cái này cho học mình tính chất mfcc
-    # def build_model(self, input_shape):
-    #     model = Sequential([
-    #         LSTM(256, return_sequences=False, input_shape=input_shape),
-    #         Dropout(0.2),
-    #         Dense(128, activation='relu'),
-    #         Dropout(0.2),
-    #         Dense(64, activation='relu'),
-    #         Dropout(0.2),
-    #         Dense(7, activation='softmax')
-    #     ])
-    #     model.compile(loss=self.loss, optimizer='adam', metrics=['accuracy'])
-    #     self.model = model
     
     def preprocessing(self):
         sound_list = audio_preprocessing(self.path_data, self.select_audio_preprocessing, self.n_sample)
