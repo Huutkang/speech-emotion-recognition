@@ -40,6 +40,7 @@ def cal_input_shape(cf, audio_features, n_sample, n_chroma, n_mfcc, TB = False):
     '''
     hàm này giúp tính toán kích thước ma trận đầu vào
     '''
+    td = False
     if cf == '1d':
         cf = 'frequency'
         TB = True

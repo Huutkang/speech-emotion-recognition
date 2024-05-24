@@ -24,8 +24,8 @@ if 'speech emotion recognition' in cwd:
         os.chdir('share')
         os.system('git init')
         os.system('git branch -M main')
-        os.system('git remote add SER https://github.com/Huutkang/share.git')
-        os.system('git pull SER main')
+        os.system('git remote add share https://github.com/Huutkang/share.git')
+        os.system('git pull share main')
 else:
     raise Exception('open sai thư mục. vui lòng open thư mục speech emotion recognition')
 

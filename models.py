@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import seaborn as sns
 from keras.models import Sequential
-from keras.layers import Dense, LSTM, Dropout, Conv1D, Conv2D, MaxPooling1D, MaxPool2D, Flatten, BatchNormalization
+from keras.layers import Dense, LSTM, Dropout, Conv1D, Conv2D, MaxPooling1D, MaxPooling2D, Flatten, BatchNormalization
 from keras.callbacks import ReduceLROnPlateau
 from keras import regularizers
 from sklearn.model_selection import train_test_split
@@ -42,7 +42,7 @@ class Model:
             return None
         try:
             # Tiếp tục huấn luyện từ epoch cuối cùng của lần trước
-            self.history = self.model.fit(self.X, self.Y, validation_split=0.2, epochs = epochs_to_train, batch_size=64, initial_epoch=self.history.epoch[-1]+1)
+            self.history = self.model.fit(self.X_train, self.Y_train, validation_data=(self.X_test, self.Y_test), epochs = epochs_to_train, batch_size=64, initial_epoch=self.history.epoch[-1]+1)
             print("Tiếp tục huấn luyện thành công.")
         except Exception as e:
             print("Đã xảy ra lỗi khi tiếp tục huấn luyện:", str(e))
@@ -111,12 +111,12 @@ class cnn(Model):
     n_chroma = 12
     n_mfcc = 20
     n_sample = 5*22050
-    hs = [1, 1, 1, 1, 1]
+    hs = [10, 10, 1, 10, 1]
     
     select_audio_preprocessing = {
         'sequentially': True, # default
         'normalize': True,
-        'trim': True,
+        'trim': False,
         'reduce_noise': False,
         'stretch': False,
         'picth' : False,
@@ -166,23 +166,39 @@ class cnn(Model):
             model.compile(optimizer = 'adam' , loss = 'categorical_crossentropy' , metrics = ['accuracy'])
 
             self.model = model
-            
+
         elif self.num_dimensions == '2d':
-            model=Sequential()
-            model.add(Conv2D(64, kernel_size=3, padding = 'same', activation = 'relu', input_shape = input_shape))
-            model.add(MaxPool2D(pool_size = 4, strides = 4))
-            model.add(BatchNormalization())
-
-            model.add(Conv2D(64, kernel_size=2, padding = 'same', activation = 'relu'))
-            model.add(MaxPool2D(pool_size = 4, strides = 4))
-            model.add(BatchNormalization())
-
-            model.add(Dropout(0.3))
-
+            model = Sequential()
+    
+            model.add(Conv2D(64, (3, 3), activation='relu', padding='same', input_shape=input_shape))
+            model.add(MaxPooling2D((2, 2), strides=(2, 2)))
+            
+            model.add(Conv2D(128, (3, 3), activation='relu', padding='same'))
+            model.add(MaxPooling2D((2, 2), strides=(2, 2)))
+            
+            model.add(Conv2D(256, (3, 3), activation='relu', padding='same'))
+            model.add(MaxPooling2D((2, 2), strides=(2, 2)))
+            
+            model.add(Conv2D(512, (3, 3), activation='relu', padding='same'))
+            model.add(MaxPooling2D((2, 2), strides=(2, 2)))
+            
+            model.add(Conv2D(512, (3, 3), activation='relu', padding='same'))
+            model.add(MaxPooling2D((2, 2), strides=(2, 2)))
+            
+            # Fully connected layers
             model.add(Flatten())
-            model.add(Dense(units = 64, activation = 'relu', kernel_regularizer = regularizers.l2(0.01)))
-            model.add(Dropout(0.3))
-            model.add(Dense(units = 7, activation = 'softmax', kernel_regularizer = regularizers.l2(0.01)))
+            model.add(Dense(2048, activation='relu'))
+            model.add(Dropout(0.1))
+            model.add(Dense(1024, activation='relu'))
+            model.add(Dropout(0.1))
+            model.add(Dense(512, activation='relu'))
+            model.add(Dropout(0.1))
+            model.add(Dense(256, activation='relu'))
+            model.add(Dropout(0.1))
+            model.add(Dense(64, activation='relu'))
+            model.add(Dropout(0.1))
+            model.add(Dense(7, activation='softmax'))
+            
             model.compile(optimizer = 'adam' , loss = 'categorical_crossentropy' , metrics = ['accuracy'])
 
             self.model = model
@@ -270,6 +286,8 @@ class lstm(Model):
         '''build model phải phù hợp với số lượng các tính chất sẽ học. nếu chạy linh tinh sẽ cho kết quả tệ'''
         model = Sequential([
             LSTM(512, return_sequences=False, input_shape=input_shape),
+            Dropout(0.1),
+            Dense(512, activation='relu'),
             Dropout(0.1),
             Dense(256, activation='relu'),
             Dropout(0.1),
