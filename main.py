@@ -13,49 +13,57 @@ if 'speech emotion recognition' not in cwd:
 
 # =================================================================
 
-# audio_features = ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel']
-# a = cnn('TESS', '2d', audio_features)
+# a = cnn(['TESS',  'Emotion', 'RAVDESS', 'SAVEE'], '1d', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'])
+# a.select_audio_preprocessing['sequentially'] = False
 # a.run(50)
 # save_obj(a)
 
 # -----------------------------------------------------------------
 
-# audio_features = ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel']
-# a = cnn(['vi/1','vi/2', 'vi/3', 'vi/4', 'vi/5', 'vi/6', 'vi/7', 'vi/8'], '1d', audio_features)
-# a.select_audio_preprocessing['sequentially'] =False
-# a.run(70)
+# a = cnn(['TESS',  'Emotion', 'RAVDESS', 'SAVEE'], '2d', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'])
+# a.continue_studying = True
+# a.run(5)
+# save_obj(a)
+
+# -----------------------------------------------------------------
+
+# a = cnn(['phim_viet',  'Emotion', 'SAVEE'], '2d', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'])
+# a.continue_studying = True
+# a.run(10)
 # save_obj(a)
 
 # =================================================================
 
 # b = lstm(['TESS',  'Emotion', 'RAVDESS', 'SAVEE'], 'frequency', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'], True)
-# b.select_audio_preprocessing['sequentially'] = False
 # b.run(50)
 # save_obj(b)
 
 # -----------------------------------------------------------------
 
-# việc build model phụ thuộc vào số tính chất cần học. nên cân nhắc hàm  build_model
-# b = lstm('TESS', 'time', 'mfcc', False)
-# b.run(50)
-# save_obj(b)
-
-# -----------------------------------------------------------------
-# dt = [ 'vi/1','vi/2', 'vi/3', 'vi/4', 'vi/5', 'vi/6', 'vi/7', 'vi/8']
-# dt = ['Emotion']+5*dt
-# b = lstm(dt, 'time', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'], False)
-# b.run(50)
+# b = lstm(['phim_viet',  'Emotion', 'SAVEE'], 'time', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'], False)
+# b.continue_studying = True
+# b.run(10)
 # save_obj(b)
 
 # =================================================================
 
-# c = Realtime(path_cnn='storage/CNN/1 cnn.nht', path_lstm='storage/LSTM/1 lstm.nht')
-# c.start()
+# a = load_obj('storage/CNN/cnn 512 emo sav 10.nht')
+# del a.X_train, a.Y_train
+# del a.X_test, a.Y_test
+# save_obj(a)
+
+# b = load_obj('storage/LSTM/2 lstm.nht')
+# b.resume_training(50)
+# b.results()
+# save_obj(b)
+
+# =================================================================
+
+c = Realtime(path_cnn='storage/CNN/cnn.nht', path_lstm='storage/LSTM/lstm.nht')
+c.start()
 
 # c = Realtime()
 # c.start()
-
-
 
 
 
