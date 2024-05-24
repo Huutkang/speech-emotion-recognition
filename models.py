@@ -187,11 +187,11 @@ class cnn(Model):
             
             # Fully connected layers
             model.add(Flatten())
-            model.add(Dense(2048, activation='relu'))
-            model.add(Dropout(0.1))
-            model.add(Dense(1024, activation='relu'))
+            model.add(Dense(512, activation='relu'))
             model.add(Dropout(0.1))
             model.add(Dense(512, activation='relu'))
+            model.add(Dropout(0.1))
+            model.add(Dense(256, activation='relu'))
             model.add(Dropout(0.1))
             model.add(Dense(256, activation='relu'))
             model.add(Dropout(0.1))
