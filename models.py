@@ -114,15 +114,15 @@ class cnn(Model):
     hs = [10, 10, 1, 10, 1]
     
     select_audio_preprocessing = {
-        'sequentially': True, # default
+        'sequentially': False,
         'normalize': True,
-        'trim': False,
+        'trim': True,
         'reduce_noise': False,
-        'stretch': False,
-        'picth' : False,
-        'add_noise': False,
-        'shift': False,
-        'remove_slient' : False, # đọc lại cảnh báo của An
+        'stretch': True,
+        'picth' : True,
+        'add_noise': True,
+        'shift': True,
+        'remove_slient' : False, # đọc lại cảnh báo của an
         'split_pad_data': True
     }
     
@@ -232,17 +232,17 @@ class lstm(Model):
     n_chroma = 12
     n_mfcc = 20
     n_sample = 5*22050
-    hs = [1, 1, 1, 1, 1]   # hệ số nhân với các tính chất: zcr, chroma_stft, mfcc, rms, mel
+    hs = [10, 10, 1, 10, 1]   # hệ số nhân với các tính chất: zcr, chroma_stft, mfcc, rms, mel
     
     select_audio_preprocessing = {
-        'sequentially': True, # default
+        'sequentially': False,
         'normalize': True,
         'trim': True,
         'reduce_noise': False,
-        'stretch': False,
-        'picth' : False,
-        'add_noise': False,
-        'shift': False,
+        'stretch': True,
+        'picth' : True,
+        'add_noise': True,
+        'shift': True,
         'remove_slient' : False, # đọc lại cảnh báo của an
         'split_pad_data': True
     }

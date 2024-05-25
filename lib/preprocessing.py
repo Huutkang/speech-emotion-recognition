@@ -110,7 +110,12 @@ def audio_preprocessing(path_data, select, n_sample, predict = False, datax = No
             else:
                 yield [data, i[1]]
         else:
-            yield [data, i[1]]
+            if select['split_pad_data']:
+                xy = split_pad_data(data, i[1], n_sample)
+                for j in xy:
+                    yield j
+            else:
+                yield [data, i[1]]
             if select['normalize']:
                 normalize_data = librosa.util.normalize(data, norm=+5.0)
                 if select['split_pad_data']:
