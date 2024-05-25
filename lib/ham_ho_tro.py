@@ -95,13 +95,13 @@ def cal_input_shape(cf, audio_features, n_sample, n_chroma, n_mfcc, TB = False):
         raise ValueError("cf chỉ nhận hai giá trị là 'time' hoặc 'frequency'")
 
 
-def plot_acc_and_loss(history, epochs):
+def plot_acc_and_loss(history):
     '''hàm này giúp vẽ đồ thị trực quan hóa quá trình huấn luyện mô hình'''
     acc = history.history['accuracy']
     val_acc = history.history['val_accuracy']
     loss = history.history['loss']
     val_loss = history.history['val_loss']
-    epochs = [i for i in range(epochs)]
+    epochs = [i for i in range(len(history.history['accuracy']))]
     print('accuracy: '+ str(acc[-1]) + '\nval_accuracy: '+ str(val_acc[-1])+ '\nloss: '+ str(loss[-1])+ '\nval_loss: '+ str(val_loss[-1]))
     plt.subplot(2, 1, 1)
     plt.plot(epochs, acc, label='train accuracy')

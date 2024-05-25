@@ -71,7 +71,7 @@ def audio_preprocessing(path_data, select, n_sample, predict = False, datax = No
             if select['normalize']:
                 data = librosa.util.normalize(data, norm=+5.0)
             if select['trim']:
-                data = librosa.effects.trim(data, top_db=20)[0]
+                data = librosa.effects.trim(data, top_db=10)[0]
             if select['reduce_noise']:
                 # An: Hàm này giảm các tạp âm đi
                 # An: T test thử với phổ mfcc thì thấy các tạp âm được giảm khá rõ, nhưng đồng thời
@@ -120,7 +120,7 @@ def audio_preprocessing(path_data, select, n_sample, predict = False, datax = No
                 else:
                     yield [normalize_data,i[1]]
             if select['trim']:
-                trim_data = librosa.effects.trim(data, top_db=20)[0]
+                trim_data = librosa.effects.trim(data, top_db=10)[0]
                 if select['split_pad_data']:
                     xy = split_pad_data(trim_data, i[1], n_sample)
                     for j in xy:

@@ -48,7 +48,7 @@ class Model:
             print("Đã xảy ra lỗi khi tiếp tục huấn luyện:", str(e))
     
     def results(self):
-        plot_acc_and_loss(self.history, self.epochs)
+        plot_acc_and_loss(self.history)
         ev = self.evaluate(data=(self.X_test, self.Y_test))
         print('\n', ev[0], '\n')
         print(ev[1], '\n')
@@ -269,11 +269,11 @@ class lstm(Model):
         model = Sequential([
             LSTM(512, return_sequences=False, input_shape=input_shape),
             Dropout(0.1),
-            Dense(256, activation='relu'),
+            Dense(512, activation='relu'),
             Dropout(0.1),
             Dense(256, activation='relu'),
             Dropout(0.1),
-            Dense(128, activation='relu'),
+            Dense(256, activation='relu'),
             Dropout(0.1),
             Dense(64, activation='relu'),
             Dropout(0.1),
