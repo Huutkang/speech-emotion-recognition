@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import seaborn as sns
 from keras.models import Sequential
-from keras.layers import Dense, LSTM, Dropout, Conv1D, Conv2D, MaxPooling1D, MaxPooling2D, Flatten, BatchNormalization
+from keras.layers import Dense, LSTM, Dropout, Conv1D, Conv2D, MaxPooling1D, MaxPooling2D, Flatten
 from keras.callbacks import ReduceLROnPlateau
 from keras import regularizers
 from sklearn.model_selection import train_test_split
@@ -114,15 +114,15 @@ class cnn(Model):
     hs = [10, 10, 1, 10, 1]
     
     select_audio_preprocessing = {
-        'sequentially': False,
-        'normalize': True,
-        'trim': True,
+        'sequentially': True,
+        'normalize': False,
+        'trim': False,
         'reduce_noise': False,
-        'stretch': True,
-        'picth' : True,
-        'add_noise': True,
-        'shift': True,
-        'remove_slient' : False, # đọc lại cảnh báo của an
+        'stretch': False,
+        'picth' : False,
+        'add_noise': False,
+        'shift': False,
+        'remove_slient' : False,
         'split_pad_data': True
     }
     
@@ -235,15 +235,15 @@ class lstm(Model):
     hs = [10, 10, 1, 10, 1]   # hệ số nhân với các tính chất: zcr, chroma_stft, mfcc, rms, mel
     
     select_audio_preprocessing = {
-        'sequentially': False,
-        'normalize': True,
-        'trim': True,
+        'sequentially': True,
+        'normalize': False,
+        'trim': False,
         'reduce_noise': False,
-        'stretch': True,
-        'picth' : True,
-        'add_noise': True,
-        'shift': True,
-        'remove_slient' : False, # đọc lại cảnh báo của an
+        'stretch': False,
+        'picth' : False,
+        'add_noise': False,
+        'shift': False,
+        'remove_slient' : False,
         'split_pad_data': True
     }
     
@@ -269,11 +269,11 @@ class lstm(Model):
         model = Sequential([
             LSTM(512, return_sequences=False, input_shape=input_shape),
             Dropout(0.1),
-            Dense(512, activation='relu'),
-            Dropout(0.1),
             Dense(256, activation='relu'),
             Dropout(0.1),
             Dense(256, activation='relu'),
+            Dropout(0.1),
+            Dense(128, activation='relu'),
             Dropout(0.1),
             Dense(64, activation='relu'),
             Dropout(0.1),

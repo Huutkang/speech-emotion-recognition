@@ -20,10 +20,10 @@ if 'speech emotion recognition' not in cwd:
 
 # -----------------------------------------------------------------
 
-a = cnn(['phim_viet', 'phim_viet', 'TESS',  'Emotion', 'RAVDESS', 'SAVEE'], '2d', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'])
-a.continue_studying = True
-a.run(5)
-save_obj(a)
+# a = cnn(['phim_viet', 'TESS',  'Emotion', 'RAVDESS', 'SAVEE'], '2d', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'])
+# a.continue_studying = True
+# a.run(15)
+# save_obj(a)
 
 # =================================================================
 
@@ -33,34 +33,23 @@ save_obj(a)
 
 # -----------------------------------------------------------------
 
-# b = lstm(['phim_viet', 'phim_viet', 'TESS',  'Emotion', 'RAVDESS', 'SAVEE'], 'time', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'], False)
+# b = lstm('phim_viet', 'time', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'], False)
 # b.continue_studying = True
-# b.run(10)
+# b.run(1)
 # save_obj(b)
 
 # =================================================================
 
-# a = load_obj('storage/CNN/cnn 4 bộ 20 ep.nht')
-# a.resume_training(20)
-# del a.X_train, a.Y_train
-# del a.X_test, a.Y_test
-# save_obj(a)
-# a.results()
-
-# b = load_obj('storage/LSTM/4 lstm.nht')
-# b.resume_training(50)
-# b.results()
-# del b.X_train, b.Y_train
-# del b.X_test, b.Y_test
-# save_obj(b)
+a = load_obj('storage/lstm/lstm 65.nht')
+del a.X_train, a.Y_train
+del a.X_test, a.Y_test
+save_obj(a)
 
 # =================================================================
 
-# c = Realtime(path_cnn='storage/CNN/test.nht', path_lstm='storage/LSTM/1 lstm.nht')
+# c = Realtime(path_cnn='storage/CNN/cnn 20.nht', path_lstm='storage/LSTM/lstm 65.nht')
 # c.start()
 
 # c = Realtime()
 # c.start()
-
-
 
