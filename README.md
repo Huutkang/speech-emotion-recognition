@@ -51,7 +51,7 @@ chạy file setup.py để setup thư mục làm việc và để cài đặt m�
 nếu trong quá trình cài đặt các thư viện phụ thuộc mà bị lỗi thì bạn tự fix nhé. mình dùng win11 và python 3.12.3 thì không có vấn đề gì.
 
 ### Bước 4:
-Sau khi cài đặt xong thư viện, tiếp tục tải data từ đường dẫn đã ghi trên phần "tập dữ liệu".
+Sau khi cài đặt xong thư viện, tiếp tục tải data từ đường dẫn: https://drive.google.com/drive/folders/10DULTg6z8GbAmI6K5FunHzrohR2XxOfj?usp=sharing
 thực hiện giải nén và đưa vào thư mục data trong thu mục speech-emotion-labeling. đã có sẵn một ảnh chụp cấu trúc thư mục data.
 
 ### Bước 5:
