@@ -13,7 +13,7 @@ if 'speech emotion recognition' not in cwd:
 
 # =================================================================
 
-# a = cnn(['TESS',  'Emotion', 'RAVDESS', 'SAVEE'], '1d', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'])
+# a = cnn(['phim_viet', 'TESS',  'Emotion', 'RAVDESS', 'SAVEE'], '1d', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'])
 # a.select_audio_preprocessing['sequentially'] = False
 # a.run(50)
 # save_obj(a)
@@ -33,22 +33,15 @@ if 'speech emotion recognition' not in cwd:
 
 # -----------------------------------------------------------------
 
-# b = lstm('phim_viet', 'time', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'], False)
+# b = lstm(['phim_viet', 'TESS',  'Emotion', 'RAVDESS', 'SAVEE'], 'time', ['zcr', 'chroma_stft', 'mfcc', 'rms', 'mel'], False)
 # b.continue_studying = True
-# b.run(1)
+# b.run(40)
 # save_obj(b)
 
 # =================================================================
 
-a = load_obj('storage/lstm/lstm 65.nht')
-del a.X_train, a.Y_train
-del a.X_test, a.Y_test
-save_obj(a)
-
-# =================================================================
-
-# c = Realtime(path_cnn='storage/CNN/cnn 20.nht', path_lstm='storage/LSTM/lstm 65.nht')
-# c.start()
+c = Realtime(path_cnn='storage/CNN/1 cnn.nht', path_lstm='storage/LSTM/1 lstm.nht')
+c.start()
 
 # c = Realtime()
 # c.start()
