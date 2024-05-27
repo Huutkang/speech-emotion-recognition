@@ -56,6 +56,7 @@ thực hiện giải nén và đưa vào thư mục data trong thu mục speech-
 
 ### Bước 5:
 Sau khi hoàn thành các bước trên bạn vào file main. setup các thông số cần thiết. và chạy
+&nbsp;
 có một số cách setup các thông số gây ra lỗi như: tạo một mảng mà không phải hình chữ nhật. khi đó mảng không phải ma trận. và đưa vào mô hình học máy sẽ gây ra lỗi. và đó là lỗi từ bạn. không phải từ phía chúng tôi.
 
 ## Đóng góp
